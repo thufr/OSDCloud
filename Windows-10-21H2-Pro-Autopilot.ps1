@@ -61,7 +61,8 @@ $AutopilotOOBEJson = @'
                    "IsPresent":  true
                },
     "GroupTag":  "En till en - GVF",
-    "GroupTagOptions":  "En till en - GVF Teknik",
+    "GroupTagOptions":  [  
+   "En till en - GVF Teknik",
    "En till en - KTC",
    "En till en - Fredricelundsskolan",
    "En till flera - Fredricelundsskolan",
@@ -125,7 +126,8 @@ $AutopilotOOBEJson = @'
    "En till en - Sundsta-Alvkullegymnasiet KTC",
    "En till en - Sundsta-Alvkullegymnasiet TEKNIK",
    "En till flera - Sundsta-Alvkullegymnasiet",
-   "En till flera - Sundsta-Alvkullegymnasiet KIOSK",
+   "En till flera - Sundsta-Alvkullegymnasiet KIOSK"
+                    ],
     "Hidden":  [
                    "AssignedComputerName",
                    "AssignedUser",
@@ -189,7 +191,7 @@ Copy-PSModuleToFolder -Name OSD -Destination 'C:\Program Files\WindowsPowerShell
 #=================================================
 Write-Verbose -Verbose "Use-WindowsUnattend -Path 'C:\' -UnattendPath $UnattendPath"
 Use-WindowsUnattend -Path 'C:\' -UnattendPath $UnattendPath -Verbose
-Notepad $UnattendPath
+#Notepad $UnattendPath
 #=================================================
 
 #================================================
@@ -202,7 +204,7 @@ Set Path = %PATH%;C:\Program Files\WindowsPowerShell\Scripts
 Start /Wait PowerShell -NoL -C Install-Module AutopilotOOBE -Force -Verbose
 Start /Wait PowerShell -NoL -C Install-Module OSD -Force -Verbose
 Start /Wait PowerShell -NoL -C Start-AutopilotOOBE
-Start /Wait PowerShell -NoL -C Start-OOBEDeploy
+#Start /Wait PowerShell -NoL -C Start-OOBEDeploy
 Start /Wait PowerShell -NoL -C Restart-Computer -Force
 '@
 $AutopilotCMD | Out-File -FilePath 'C:\Windows\System32\Karlstad.cmd' -Encoding ascii -Force
