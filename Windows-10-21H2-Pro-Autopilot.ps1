@@ -129,6 +129,7 @@ $AutopilotOOBEJson = @'
    "En till flera - Sundsta-Alvkullegymnasiet KIOSK"
                     ],
     "Hidden":  [
+                   "AddToGroup",
                    "AssignedComputerName",
                    "AssignedUser",
                    "PostAction",
