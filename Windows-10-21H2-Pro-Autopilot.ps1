@@ -1,4 +1,4 @@
-﻿Write-Host  -ForegroundColor Cyan 'Windows 10 21H2 Pro Autopilot Karlstad 1-1'
+﻿Write-Host  -ForegroundColor Cyan 'Windows 10 22H2 Pro Autopilot'
 #================================================
 #   [PreOS] Update Module
 #================================================
@@ -209,6 +209,25 @@ Start /Wait PowerShell -NoL -C Start-AutopilotOOBE
 Start /Wait PowerShell -NoL -C Restart-Computer -Force
 '@
 $AutopilotCMD | Out-File -FilePath 'C:\Windows\System32\Karlstad.cmd' -Encoding ascii -Force
+
+#================================================
+#  [PostOS] Autopilothash CMD Command Line
+#================================================
+Write-Host -ForegroundColor Green "Create C:\Windows\System32\a.cmd"
+$AutopilothashCMD = @'
+@echo off
+
+for /f "usebackq tokens=2 delims=:=" %%a in (`wmic logicaldisk where VolumeName^="WinPE" get caption /value`) do set drive=%%a:
+if "%drive%"=="" (
+  echo not inserted
+) else (
+  PowerShell -NoL -Com Set-ExecutionPolicy Unrestricted -Force
+  Start /Wait PowerShell -NoL -C %drive%\autopilothash.ps1 -force -verbose
+)
+
+'@
+$AutopilothashCMD | Out-File -FilePath 'C:\Windows\System32\a.cmd' -Encoding ascii -Force
+
 
 #================================================
 #  [PostOS] SetupComplete CMD Command Line
