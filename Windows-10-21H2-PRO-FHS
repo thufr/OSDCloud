@@ -86,13 +86,13 @@ $AutopilotOOBEJson = @'
 	"Assign": {
 		"IsPresent": true
 	},
-	"GroupTag": "[U]ING",
+	"GroupTag": "USER-ING",
 	"GroupTagOptions": [
-		"[U]ING",
-		"[U]KLA",
-    "[U]KRI",
-    "[U]KYR",
-    "[U]MOL"
+		"USER-ING",
+		"USER-KLA",
+    		"USER-KRI",
+    		"USER-KYR",
+    		"USER-MOL"
 	],
 	"Hidden": [
 		"AssignedComputerName",
