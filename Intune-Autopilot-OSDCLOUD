@@ -136,7 +136,7 @@ Write-Host -ForegroundColor Green "Create C:\Windows\Setup\Scripts\SetupComplete
 $SetupCompleteCMD = @'
 RD C:\OSDCloud\OS /S /Q
 RD C:\Drivers /S /Q
-reg add HKLM\Software\Microsoft\Windows\CurrentVersion\OOBE /v OEMFirstRun /t REG_SZ /d "cmd.exe /c C:\Windows\System32\OOBE.cmd" /f
+reg add HKLM\Software\Microsoft\Windows\CurrentVersion\OOBE /v OEMFirstRun /t REG_SZ /d "cmd.exe /c OOBE.cmd" /f
 '@
 $SetupCompleteCMD | Out-File -FilePath 'C:\Windows\Setup\Scripts\SetupComplete.cmd' -Encoding ascii -Force
 
