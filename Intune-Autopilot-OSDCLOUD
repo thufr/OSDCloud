@@ -86,8 +86,13 @@ $AutopilotOOBEJson = @'
 	"Assign": {
 		"IsPresent": true
 	},
-	"GroupTag": "USER-ING",
+	"GroupTag": "ING",
 	"GroupTagOptions": [
+		"ING",
+		"KLA",
+		"KRI",
+		"KYR",
+		"MOL",
 		    "USER-ING",
 		    "USER-KLA",
     		"USER-KRI",
@@ -116,7 +121,7 @@ $AutopilotOOBEJson | Out-File -FilePath "C:\ProgramData\OSDeploy\OSDeploy.Autopi
 #================================================
 #  [PostOS] AutopilotOOBE CMD Command Line
 #================================================
-Write-Host -ForegroundColor Green "Create C:\Windows\System32\OOBE.cmd"
+Write-Host -ForegroundColor Green "Create C:\Windows\System32\fhs.cmd"
 $OOBECMD = @'
 PowerShell -NoL -Com Set-ExecutionPolicy RemoteSigned -Force
 Set Path = %PATH%;C:\Program Files\WindowsPowerShell\Scripts
@@ -125,7 +130,6 @@ Start /Wait PowerShell -NoL -C Install-Module OSD -Force -Verbose
 Start /Wait PowerShell -NoL -C Start-AutopilotOOBE
 Start /Wait PowerShell -NoL -C Start-OOBEDeploy
 Start /Wait PowerShell -NoL -C Restart-Computer -Force
-reg delete HKLM\Software\Microsoft\Windows\CurrentVersion\OOBE /v OEMFirstRun /f
 '@
 $OOBECMD | Out-File -FilePath 'C:\Windows\System32\OOBE.cmd' -Encoding ascii -Force
 
@@ -136,7 +140,6 @@ Write-Host -ForegroundColor Green "Create C:\Windows\Setup\Scripts\SetupComplete
 $SetupCompleteCMD = @'
 RD C:\OSDCloud\OS /S /Q
 RD C:\Drivers /S /Q
-reg add HKLM\Software\Microsoft\Windows\CurrentVersion\OOBE /v OEMFirstRun /t REG_SZ /d "cmd.exe /c OOBE.cmd" /f
 '@
 $SetupCompleteCMD | Out-File -FilePath 'C:\Windows\Setup\Scripts\SetupComplete.cmd' -Encoding ascii -Force
 
