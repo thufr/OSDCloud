@@ -106,7 +106,7 @@ $AutopilotOOBEJson = @'
 		"Assign",
 		"AddToGroup"
 	],
-	"PostAction": "Quit",
+	"PostAction": "Restart",
 	"Run": "NetworkingWireless",
 	"Docs": "https://google.com/",
 	"Title": "OSDCLOUD Autopilot Registrering"
