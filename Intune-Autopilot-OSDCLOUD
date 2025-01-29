@@ -7,11 +7,6 @@ if ((Get-MyComputerModel) -match 'Virtual') {
     Set-DisRes 1600
 }
 
-Write-Host -ForegroundColor Green "Updating OSD PowerShell Module"
-Install-Module OSD -Force
-
-Write-Host  -ForegroundColor Green "Importing OSD PowerShell Module"
-Import-Module OSD -Force   
 
 #=======================================================================
 #   [OS] Params and Start-OSDCloud
@@ -86,18 +81,11 @@ $AutopilotOOBEJson = @'
 	"Assign": {
 		"IsPresent": true
 	},
-	"GroupTag": "ING",
+	"GroupTag": "TEST",
 	"GroupTagOptions": [
-		"ING",
-		"KLA",
-		"KRI",
-		"KYR",
-		"MOL",
-		    "USER-ING",
-		    "USER-KLA",
-    		"USER-KRI",
-    		"USER-KYR",
-    		"USER-MOL"
+		"TEST",
+		"PROD"
+		
 	],
 	"Hidden": [
 		"AssignedComputerName",
@@ -121,7 +109,7 @@ $AutopilotOOBEJson | Out-File -FilePath "C:\ProgramData\OSDeploy\OSDeploy.Autopi
 #================================================
 #  [PostOS] AutopilotOOBE CMD Command Line
 #================================================
-Write-Host -ForegroundColor Green "Create C:\Windows\System32\fhs.cmd"
+Write-Host -ForegroundColor Green "Create C:\Windows\System32\oobe.cmd"
 $OOBECMD = @'
 PowerShell -NoL -Com Set-ExecutionPolicy RemoteSigned -Force
 Set Path = %PATH%;C:\Program Files\WindowsPowerShell\Scripts
